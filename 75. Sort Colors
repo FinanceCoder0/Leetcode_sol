@@ -1,0 +1,8 @@
+# https://leetcode.com/problems/sort-colors/submissions/1285894348
+# It is necessary to tackle this problem without sort function 
+
+class Solution(object):
+    def sortColors(self, nums):
+        nums.sort()
+        print(nums)
+        
