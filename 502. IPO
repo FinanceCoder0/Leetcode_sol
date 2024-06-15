@@ -1,0 +1,27 @@
+# https://leetcode.com/problems/ipo/submissions/1289425205?envType=daily-question&envId=2024-06-15
+
+class Solution(object):
+        import heapq
+        def findMaximizedCapital(self, k, w, profits, capital):
+            projects = list(zip(profits, capital))
+            # Sort the projects based on the capital required in ascending order
+            projects.sort(key=lambda x: x[1])
+            
+            max_heap = []
+            index = 0
+
+            for _ in range(k):
+                while index < len(projects) and projects[index][1] <= w:
+                    heapq.heappush(max_heap, -projects[index][0])  
+                    index += 1
+                
+                # If no projects can be started, break
+                if not max_heap:
+                    break
+                
+                
+                w -= heapq.heappop(max_heap)  
+
+            return w
+
+        
