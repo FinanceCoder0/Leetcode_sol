@@ -1,0 +1,17 @@
+# https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/submissions/1287471543
+
+class Solution(object):
+    def minMovesToSeat(self, seats, students):
+        import math
+        students.sort()
+        seats.sort()
+        b=0
+        for i in range(len(seats)):
+            a= abs(students[i]-seats[i])
+            sum=a+b
+            b=sum
+        if sum<0:
+            return (sum*-1)
+        else:
+            return sum
+        
