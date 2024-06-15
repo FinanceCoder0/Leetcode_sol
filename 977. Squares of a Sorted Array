@@ -1,0 +1,10 @@
+# https://leetcode.com/problems/squares-of-a-sorted-array/submissions/1285853948
+
+class Solution(object):
+    def sortedSquares(self, nums):
+        a=[]
+        for i in nums:
+            a.append(i**2)
+        a.sort()
+        return(a)
+        
