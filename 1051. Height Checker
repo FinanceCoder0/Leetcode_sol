@@ -1,0 +1,14 @@
+# https://leetcode.com/problems/height-checker/submissions/1283651179?envType=daily-question&envId=2024-06-10
+
+class Solution(object):
+    def heightChecker(self, heights):
+        a=heights[:]
+        c=0
+        heights.sort()
+        for i in range(len(heights)):
+            if a[i]==heights[i]:
+                continue
+            else:
+                c+=1
+        return (c)
+        
