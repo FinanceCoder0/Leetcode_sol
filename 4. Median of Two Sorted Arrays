@@ -1,0 +1,16 @@
+# https://leetcode.com/problems/median-of-two-sorted-arrays/submissions/1293256355
+
+class Solution(object):
+    def findMedianSortedArrays(self, nums1, nums2):
+        s=nums1+nums2
+        s.sort()
+        a,b=0,len(s)
+        c=(b-a)//2
+        if len(s)%2==1:
+            return (s[c])
+        else:
+            d=(b)//2
+            med=(s[d-1]+(s[d]))
+            mad=med/2.0
+            return (mad)
+        
