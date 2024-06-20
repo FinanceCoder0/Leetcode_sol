@@ -1,0 +1,27 @@
+# https://leetcode.com/problems/magnetic-force-between-two-balls/submissions/1294848389?envType=daily-question&envId=2024-06-20
+
+class Solution(object):
+    def maxDistance(self, position, m):
+        def can_place_balls(min_dist):
+            count = 1  
+            last_position = position[0]
+            for i in range(1, len(position)):
+                if position[i] - last_position >= min_dist:
+                    count += 1
+                    last_position = position[i]
+                    if count == m:
+                        return True
+            return False
+        position.sort()
+        low, high = 1, position[-1] - position[0]
+        best_dist = 0
+        while low <= high:
+            mid = (low + high) // 2
+            if can_place_balls(mid):
+                best_dist = mid
+                low = mid + 1  
+            else:
+                high = mid - 1  
+
+        return best_dist
+        
