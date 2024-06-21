@@ -1,0 +1,12 @@
+# https://leetcode.com/problems/smallest-even-multiple/submissions/1295710230
+
+class Solution(object):
+    def smallestEvenMultiple(self, n):
+        for i in range (1,10):
+            d=n*i
+            a=d/n
+            c=d%2
+            if type(a)==int and c==0:
+                return d
+              
+        
