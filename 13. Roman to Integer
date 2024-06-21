@@ -1,0 +1,22 @@
+# https://leetcode.com/problems/roman-to-integer/submissions/1295694811
+
+class Solution(object):
+    def romanToInt(self, s):
+        values = {
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000
+        }
+        total,d=0,0
+        for i in reversed (s):
+            nums=values[i]
+            if nums<d:
+                total-=nums
+            else:
+                total+=nums
+            d=nums
+        return total
