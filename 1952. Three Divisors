@@ -1,0 +1,22 @@
+# https://leetcode.com/problems/three-divisors/submissions/1297417925
+
+class Solution(object):
+    def isThree(self, n):
+        import math
+        sqrt_n = int(math.sqrt(n))
+        if sqrt_n * sqrt_n != n:
+            return False
+        def is_prime(num):
+            if num <= 1:
+                return False
+            if num <= 3:
+                return True
+            if num % 2 == 0 or num % 3 == 0:
+                return False
+            i = 5
+            while i * i <= num:
+                if num % i == 0 or num % (i + 2) == 0:
+                    return False
+                i += 6
+            return True
+        return is_prime(sqrt_n)
