@@ -1,5 +1,5 @@
 # https://leetcode.com/problems/count-primes/submissions/1294861379
-
+# In this problem we have to count a prime numbers from unsorted array.
 class Solution(object):
     def countPrimes(self, n):
         if n <= 2:
