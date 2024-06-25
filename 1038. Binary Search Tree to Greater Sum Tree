@@ -1,0 +1,41 @@
+# https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/submissions/1300225797?envType=daily-question&envId=2024-06-25
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def bstToGst(self, root):
+       # Definition for a binary tree node.
+        def reverse_inorder_traversal(node, acc_sum):
+            if not node:
+                return acc_sum
+            
+            # Process the right subtree first
+            acc_sum = reverse_inorder_traversal(node.right, acc_sum)
+            
+            # Update the node's value with the accumulated sum
+            acc_sum += node.val
+            node.val = acc_sum
+            
+            # Process the left subtree
+            acc_sum = reverse_inorder_traversal(node.left, acc_sum)
+            
+            return acc_sum
+        
+        reverse_inorder_traversal(root, 0)
+        return root
+
+# Helper function to print the tree (for debugging purposes)
+def print_tree(root, level=0, label="."):
+    if root is not None:
+        print_tree(root.right, level + 1, "R")
+        print(" " * (4 * level) + label + ": " + str(root.val))
+        print_tree(root.left, level + 1, "L")
+
+
+
+
+        
