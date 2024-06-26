@@ -1,0 +1,18 @@
+# https://leetcode.com/problems/baseball-game/submissions/1300761850
+
+class Solution(object):
+    def calPoints(self, operations):
+        a = []
+        ops=operations
+        for op in ops:
+            if op == "C":
+                a.pop()  
+            elif op == "D":
+                a.append(2 * a[-1]) 
+            elif op == "+":
+                a.append(a[-1] + a[-2])  
+            else:
+                a.append(int(op))  
+        return (sum(a))  
+
+        
