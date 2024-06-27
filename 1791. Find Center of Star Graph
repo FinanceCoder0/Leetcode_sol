@@ -1,0 +1,12 @@
+# https://leetcode.com/problems/find-center-of-star-graph/submissions/1302292637?envType=daily-question&envId=2024-06-27
+
+class Solution(object):
+    def findCenter(self, edges):
+        x=[]
+        for i in edges:
+            for j in i:
+                x.append(j)
+        for k in x:
+            if x.count(k)==len(edges):
+                return k    
+        
