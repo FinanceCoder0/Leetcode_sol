@@ -1,0 +1,19 @@
+# https://leetcode.com/problems/maximum-total-importance-of-roads/submissions/1302611888?envType=daily-question&envId=2024-06-28
+
+class Solution(object):
+    def maximumImportance(self, n, roads):
+        degree = [0] * n
+        for road in roads:
+            degree[road[0]] += 1
+            degree[road[1]] += 1
+        cities = list(range(n))
+        cities.sort(key=lambda x: degree[x], reverse=True)
+        values = [0] * n
+        for i, city in enumerate(cities):
+            values[city] = n - i
+        total_importance = 0
+        for road in roads:
+            total_importance += values[road[0]] + values[road[1]]
+        
+        return total_importance
+
