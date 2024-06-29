@@ -1,0 +1,24 @@
+# https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/submissions/1303754411?envType=daily-question&envId=2024-06-29
+
+class Solution(object):
+    def getAncestors(self, n, edges):
+        from collections import defaultdict
+        graph = defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)
+        ancestors = [set() for _ in range(n)]
+        def dfs(node, ancestor):
+            for neighbor in graph[node]:
+                if ancestor not in ancestors[neighbor]:
+                    ancestors[neighbor].add(ancestor)
+                    dfs(neighbor, ancestor)
+        for i in range(n):
+            dfs(i, i)
+        ancestors = [sorted(list(anc)) for anc in ancestors]
+
+        return ancestors
+        solution = Solution()
+        output = solution.getAncestors(n, edgeList)
+        print(output) 
+            
+
