@@ -1,0 +1,26 @@
+# https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/submissions/1310069132
+
+class Solution(object):
+    def countStudents(self, students, sandwiches):
+        student_queue = deque(students)
+        sandwich_stack = deque(sandwiches)
+        
+        cycle_count = 0
+        
+        while student_queue:
+            if student_queue[0] == sandwich_stack[0]:
+                student_queue.popleft()
+                sandwich_stack.popleft()
+                cycle_count = 0
+            else:
+                student_queue.append(student_queue.popleft())
+                cycle_count += 1
+            
+            if cycle_count == len(student_queue):
+                break
+        
+        return len(student_queue)
+
+        solution = Solution()
+        print(solution.countStudents(students, sandwiches))
+        
