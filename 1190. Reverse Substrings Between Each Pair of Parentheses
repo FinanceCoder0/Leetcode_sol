@@ -1,0 +1,21 @@
+# https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/submissions/1317075185?envType=daily-question&envId=2024-07-11
+
+class Solution:
+    def reverseParentheses(self, s: str) -> str:
+        stack = []
+        for char in s:
+            if char == ')':
+                temp = []
+                while stack and stack[-1] != '(':
+                    temp.append(stack.pop())
+                if stack:
+                    stack.pop()
+                stack.extend(temp)
+            else:
+                stack.append(char)
+        return ''.join(stack)
+
+        
+        print(reverseParentheses("(abcd)"))     
+        print(reverseParentheses("(u(love)i)"))
+        
