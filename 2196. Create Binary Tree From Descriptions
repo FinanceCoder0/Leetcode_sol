@@ -1,0 +1,30 @@
+# https://leetcode.com/problems/create-binary-tree-from-descriptions/submissions/1321885813?envType=daily-question&envId=2024-07-15
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def createBinaryTree(self, descriptions):
+        """
+        :type descriptions: List[List[int]]
+        :rtype: Optional[TreeNode]
+        """
+        ch=set()
+        nodes={}
+        for p,c,l in descriptions:
+            if p not in nodes:
+                nodes[p]=TreeNode(p)
+            if c not in nodes:
+                nodes[c]=TreeNode(c)
+            if l:
+                nodes[p].left=nodes[c]
+            else:
+                nodes[p].right=nodes[c]
+            ch.add(c)
+        for d in descriptions:
+            if d[0] not in ch:
+                return nodes[d[0]]
+        return None
