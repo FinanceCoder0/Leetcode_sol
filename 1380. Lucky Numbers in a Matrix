@@ -1,0 +1,31 @@
+# https://leetcode.com/problems/lucky-numbers-in-a-matrix/submissions/1326326374?envType=daily-question&envId=2024-07-19
+
+from typing import List
+
+class Solution:
+    def luckyNumbers(self, matrix: List[List[int]]) -> List[int]:
+        lucky_numbers = []
+
+        # Iterate over each row to find the minimum element and its column index
+        for i in range(len(matrix)):
+            min_in_row = min(matrix[i])
+            min_index = matrix[i].index(min_in_row)
+            
+            # Check if this minimum element is the maximum in its column
+            is_lucky = True
+            for j in range(len(matrix)):
+                if matrix[j][min_index] > min_in_row:
+                    is_lucky = False
+                    break
+
+            if is_lucky:
+                lucky_numbers.append(min_in_row)
+
+        return lucky_numbers
+
+
+solution = Solution()
+matrix1 = [[3,7,8],[9,11,13],[15,16,17]]
+print(solution.luckyNumbers(matrix1))  # Output: [15]
+
+
