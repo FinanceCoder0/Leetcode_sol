@@ -1,0 +1,25 @@
+# https://leetcode.com/problems/find-valid-matrix-given-row-and-column-sums/submissions/1327626338?envType=daily-question&envId=2024-07-20
+
+from typing import List
+
+class Solution:
+    def restoreMatrix(self, rowSum: List[int], colSum: List[int]) -> List[List[int]]:
+        # Initialize the matrix with zeros
+        m, n = len(rowSum), len(colSum)
+        matrix = [[0] * n for _ in range(m)]
+        
+        for i in range(m):
+            for j in range(n):
+                # Take the minimum of the current row sum and column sum
+                value = min(rowSum[i], colSum[j])
+                # Set the matrix value
+                matrix[i][j] = value
+                # Update the row and column sums
+                rowSum[i] -= value
+                colSum[j] -= value
+                
+        return matrix
+
+# Example usage
+sol = Solution()
+print(sol.restoreMatrix([3, 8], [4, 7]))  # Output: [[3, 0], [1, 7]]
