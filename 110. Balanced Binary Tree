@@ -1,0 +1,46 @@
+# https://leetcode.com/problems/balanced-binary-tree/submissions/1328154394
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution(object):
+    def isBalanced(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        def check_balance(node):
+            # An empty node is balanced and its height is 0
+            if not node:
+                return 0, True
+            
+            # Check balance of left subtree
+            left_height, left_balanced = check_balance(node.left)
+            if not left_balanced:
+                return 0, False
+            
+            # Check balance of right subtree
+            right_height, right_balanced = check_balance(node.right)
+            if not right_balanced:
+                return 0, False
+            
+            # Current node is balanced if the heights of left and right subtrees differ by no more than 1
+            if abs(left_height - right_height) > 1:
+                return 0, False
+            
+            # Height of current node is 1 plus the height of its tallest subtree
+            return 1 + max(left_height, right_height), True
+        
+        # The result is the balance status of the root
+        return check_balance(root)[1]
+
+# Example usage:
+# root = TreeNode(3)
+# root.left = TreeNode(9)
+# root.right = TreeNode(20, TreeNode(15), TreeNode(7))
+# solution = Solution()
+# print(solution.isBalanced(root))  # Output: True
