@@ -1,0 +1,28 @@
+# https://leetcode.com/problems/grumpy-bookstore-owner/submissions/1337605708?envType=daily-question&envId=2024-06-21
+
+class Solution(object):
+    def maxSatisfied(self, customers, grumpy, minutes):
+        initial_satisfaction = 0
+        for i in range(len(customers)):
+            if grumpy[i] == 0:
+                initial_satisfaction += customers[i]
+        
+        # Calculate the initial window of size 'minutes'
+        max_additional_satisfaction = 0
+        current_additional_satisfaction = 0
+        for i in range(minutes):
+            if grumpy[i] == 1:
+                current_additional_satisfaction += customers[i]
+        
+        max_additional_satisfaction = current_additional_satisfaction
+        
+        # Slide the window across the array
+        for i in range(minutes, len(customers)):
+            if grumpy[i] == 1:
+                current_additional_satisfaction += customers[i]
+            if grumpy[i - minutes] == 1:
+                current_additional_satisfaction -= customers[i - minutes]
+            max_additional_satisfaction = max(max_additional_satisfaction,current_additional_satisfaction)
+        
+        return initial_satisfaction + max_additional_satisfaction
+        
