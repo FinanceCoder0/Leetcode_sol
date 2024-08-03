@@ -1,0 +1,13 @@
+# https://leetcode.com/problems/contains-duplicate-ii/submissions/1280949311?source=submission-ac
+
+class Solution(object):
+    def containsNearbyDuplicate(self, nums, k):
+        index_map = {}
+        
+        for i, n in enumerate(nums):
+            if n in index_map:
+                if i - index_map[n] <= k:
+                    return True
+            index_map[n] = i
+        
+        return False
